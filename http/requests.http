@@ -1,0 +1,37 @@
+### Register an employee at the employee registration service
+
+POST http://localhost:8080/employees
+Accept: application/json
+Content-Type: application/json
+
+{
+  "givenName": "Max",
+  "lastName": "Mustermann",
+  "email": "max.mustermann@musterfirma.de",
+  "department": "Musterhausplanung"
+}
+
+### List all employees
+
+GET http://localhost:8080/employees
+Accept: application/json
+
+## Show employee file
+
+GET http://localhost:8080/employees/{{employeeId}}
+Accept: application/json
+
+### De-register employee
+
+DELETE http://localhost:8080/employees/{{employeeId}}
+Accept: application/json
+
+### List all outbox items
+
+GET http://localhost:8080/outbox
+Accept: application/json
+
+### Search for employees
+
+GET http://localhost:8983/solr/employees/select?indent=true&q.op=OR&q=*%3A*
+Accept: application/json

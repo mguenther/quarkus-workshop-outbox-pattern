@@ -15,6 +15,8 @@ You'll need a locally running Apache Kafka and Apache Solr. We provide a `docker
 
 To see the event publication and consumption in action, you'll need to alter the state in some way. This can be done by creating a new employee record using the HTTP API of the employee registration service. This triggers the publication of an event that encapsulates the relevant state changes. The employee indexing service will pick that event up and update the Solr index as appropriate.
 
+Please have a look at `http/requests.http` for a set of pre-defined HTTP requests.
+
 You can start both applications in developer mode. `cd` into the resp. directory and issue the following command via the CLI.
 
 ```shell
