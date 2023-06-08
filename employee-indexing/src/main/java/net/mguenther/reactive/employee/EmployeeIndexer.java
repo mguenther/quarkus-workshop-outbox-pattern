@@ -1,13 +1,12 @@
 package net.mguenther.reactive.employee;
 
 import io.smallrye.common.annotation.Blocking;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import net.mguenther.reactive.adapter.solr.SolrAdapter;
 import org.apache.solr.common.SolrInputDocument;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.jboss.logging.Logger;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 @ApplicationScoped
 public class EmployeeIndexer {

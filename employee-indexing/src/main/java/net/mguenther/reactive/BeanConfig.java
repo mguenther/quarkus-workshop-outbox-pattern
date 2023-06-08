@@ -1,9 +1,8 @@
 package net.mguenther.reactive;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.Produces;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
 
 @ApplicationScoped
 public class BeanConfig {

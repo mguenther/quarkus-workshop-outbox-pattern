@@ -1,12 +1,8 @@
 package net.mguenther.reactive.employee;
 
-import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
-import io.smallrye.mutiny.Uni;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Employee extends PanacheEntityBase {
@@ -31,13 +27,5 @@ public class Employee extends PanacheEntityBase {
         this.lastName = lastName;
         this.email = email;
         this.departmentId = departmentId;
-    }
-
-    public static Uni<Employee> accept(final CreateEmployeeCommand command) {
-        final String employeeId = UUID.randomUUID().toString();
-        return Uni
-                .createFrom()
-                .item(new Employee(employeeId, command.getGivenName(), command.getLastName(), command.getEmail(), command.getDepartment()))
-                .flatMap(employee -> Panache.withTransaction(employee::persist).replaceWith(employee));
     }
 }
