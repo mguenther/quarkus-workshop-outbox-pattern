@@ -1,15 +1,13 @@
-# Building Reactive Systems with Quarkus
+# Reactive Quarkus Workshop - Transactional Messaging - Demo
 
-This repository contains two sample applications that demonstrates how to implement a reactive application from top-to-bottom with Quarkus. This reactive applications form a reactive system by communicating through an event-driven manner. The domain is simple: An employee registration service offers an HTTP-based API to perform CRUD-operations on employee-related data. This service publishes events to a Kafka log whenever its state changes. These events are picked up by another reactive application that consumes them and updates a Solr search index. Apache Solr features no reactive drivers, so we'll make use of the `@Blocking` annotation to do all Solr-related work on dedicated worker threads. The application is built with version 2.12.3.Final of Quarkus.
+This repository contains a demo system that showcases the use of the following patterns within a reactive Quarkus application.
 
-The code presented in this repository is the joint work of Boris Fresow and Markus Günther. It's also showcased as part of an article series on *Building Reactive Systems with Quarkus* written by both authors and published for the German JavaMagazin. The articles are in German, but if you want to check them out, they are available both in print and online:
+* [Transactional Outbox Pattern](https://microservices.io/patterns/data/transactional-outbox.html)
+* [Polling Publisher Pattern](https://microservices.io/patterns/data/polling-publisher.html)
 
-* [#1: Reaktive Programmierung mit Quarkus](https://entwickler.de/java/quarkus-reaktive-programmierung-java) (JavaMagazin 2/2023)
-* [#2: Mutiny: intuitiv verständlich?](https://entwickler.de/java/reactive-library-mutiny-java) (JavaMagazin 3/2023)
-* #3: Reaktive Anwendungen mit Quarkus entwickeln (*in Vorbereitung*)
-* #4: Reaktive Systeme mit Quarkus entwickeln (*in Vorbereitung*)
+Both of these patterns work in conjunction to achieve transactional messaging semantics when doing event collaboration between two different applications. The domain is pretty simple: There is an _Employee Registration Service_ which provides the means to perform CRUD-operations on employee-related data. Every state change is not only persisted in the corresponding database table, but also in the so called outbox, which stores the change of state as an event within the same transaction as the actual change of employee data. An asynchronous process (based on the Quartz integration Quarkus) fetches these unpublished events afterward and publishes them to a dedicated Kafka log. These events are then picked up by another reactive Quarkus application that consumes them in order to update a Solr search index.
 
-If you want to learn more about Quarkus, be sure to check out its [website](https://quarkus.io/).
+The application is built with 3.1.0.Final of Quarkus.
 
 ## Running the application
 
