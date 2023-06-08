@@ -1,4 +1,4 @@
-# Reactive Quarkus Workshop - Transactional Messaging - Demo
+# Reactive Quarkus Workshop - Transactional Messaging
 
 This repository contains a demo system that showcases the use of the following patterns within a reactive Quarkus application.
 
