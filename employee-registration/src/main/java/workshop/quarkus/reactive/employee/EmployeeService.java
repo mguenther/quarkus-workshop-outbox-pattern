@@ -31,7 +31,7 @@ public class EmployeeService {
     public Uni<Employee> accept(final CreateEmployeeCommand command) {
         return toEmployee(command)
                 .flatMap(employee -> employee.persist().replaceWith(employee))
-                .chain(e2 -> toOutboxItem(asCreatedEvent(e2)).persist().replaceWith(e2));
+                .chain(employee -> toOutboxItem(asCreatedEvent(employee)).persist().replaceWith(employee));
     }
 
     private Uni<Employee> toEmployee(final CreateEmployeeCommand command) {
